@@ -1,7 +1,8 @@
 import React from 'react';
 
 export default class TodosForm extends React.Component {
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     let node = this.refs['todo-input'];
     this.props.createTodo(node.value);
     node.value = '';
@@ -10,8 +11,10 @@ export default class TodosForm extends React.Component {
   render() {
     return (
       <div id="todo-form">
-        <input type="text" placeholder="type todo" ref="todo-input" />
-        <input type="submit" value="OK!" onClick={this.handleSubmit} />
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" placeholder="type todo" ref="todo-input" />
+          <input type="submit" value="OK!" />
+        </form>
       </div>
     );
   }
